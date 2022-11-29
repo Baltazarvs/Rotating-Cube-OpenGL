@@ -212,19 +212,15 @@ int main()
         glUseProgram(program_id);
         glBindBuffer(GL_ARRAY_BUFFER, vbo_id);
 
-        glm::mat4 trans = glm::mat4(1.0f);
-        if(!bFree)
+        if(bFree)
         {
-            trans = glm::rotate(trans, (float)(angle_x = x), glm::vec3(0.0f, 1.0f, 0.0f));
-            trans = glm::rotate(trans, (float)(angle_y = y), glm::vec3(1.0f, 0.0f, 0.0f));
-        }
-        else
-        {
-            trans = glm::rotate(trans, (float)(angle_x = x), glm::vec3(0.0f, 1.0f, 0.0f));
-            trans = glm::rotate(trans, (float)(angle_y = y), glm::vec3(1.0f, 0.0f, 0.0f));
             x += 0.01f;
             y += 0.01f;
         }
+
+        glm::mat4 trans = glm::mat4(1.0f);
+        trans = glm::rotate(trans, (float)(angle_x = x), glm::vec3(0.0f, 1.0f, 0.0f));
+        trans = glm::rotate(trans, (float)(angle_y = y), glm::vec3(1.0f, 0.0f, 0.0f));
 
         unsigned int uniloc = glGetUniformLocation(program_id, "new_pos");
         glUniformMatrix4fv(uniloc, 1, GL_FALSE, glm::value_ptr(trans));
