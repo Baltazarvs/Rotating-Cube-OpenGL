@@ -230,5 +230,11 @@ int main()
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
+
+    glDeleteBuffers(1, &vbo_id);
+    glDeleteBuffers(1, &ibo_id);
+    glDeleteProgram(program_id);
+    glfwTerminate();
+    
 	return 0;
 }
